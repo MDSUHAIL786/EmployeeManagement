@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Management System</h1>
+        <hr>
+        
+        <div align="center" class="mt-5">
+            <h2 class="mb-4">New Employee</h2>
+            <form action="#" th:action="@{/saveEmp}" th:object="${newEmp}" method="post">
+                <input type="text" th:field="*{firstName}" placeholder="Employee First Name" class="form-control mb-4 col-4" required>
+    
+                <input type="text" th:field="*{lastName}" placeholder="Employee Last Name" class="form-control mb-4 col-4" required>
+    
+                <input type="text" th:field="*{email}" placeholder="Employee Email" class="form-control mb-4 col-4" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+    
+                <input type="text" name="password" th:value="newEmp.password" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" th:field="*{password}" placeholder="Employee password" class="form-control mb-4 col-4" required>
+                <div th:each=" e: ${#fields.errors('password')}" th:text="${e}" id="validationServer03feedback" class="invalid-feedback"></div>
+                
+                
+                <button type="submit" class="btn btn-info col-2 mt-5">Add</button>
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>

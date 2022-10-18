@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div align="center" class="container my-2 mt-4">
+        <h1>Employees List</h1>
+        <div class="text-right">
+            <a th:href="@{/addEmployee}" class="btn btn-outline-primary btn-sm" role="button">Add Employee</a>
+        </div>
+        <hr>
+        <table border="1" class="table table-stripped table-responsive-md">
+            <thead>
+                <tr align="center">
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+        
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp : ${listOfEmployees}" align="center">
+                    <td th:text="${emp.id}"></td>
+                    <td th:text="${emp.firstName}"></td>
+                    <td th:text="${emp.lastName}"></td>
+                    <td th:text="${emp.email}"></td>
+                    <td th:text="${emp.password}"></td>
+                    <td align="center"><a th:href="@{/updateEmp/{id}(id=${emp.id})}" class="btn btn-outline-primary btn-sm" role="button">Update</a> <a th:href="@{/delete/{id}(id=${emp.id})}" class="btn btn-outline-danger btn-sm" role="button" >Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
